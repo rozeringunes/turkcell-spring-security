@@ -3,6 +3,8 @@ package com.turkcell.springSecurity.api.controller;
 import com.turkcell.springSecurity.business.abstracts.UserService;
 import com.turkcell.springSecurity.business.dto.requests.RegisterRequest;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
