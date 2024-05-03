@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class BrandBusinessRules {
+public class  BrandBusinessRules {
     BrandRepository brandRepository;
     public void brandNameCanNotBeDuplicated(String brandName){
         Optional<Brand>brand=brandRepository.findByNameIgnoreCase(brandName);

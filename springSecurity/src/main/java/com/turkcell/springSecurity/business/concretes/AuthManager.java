@@ -25,6 +25,7 @@ public class AuthManager implements AuthService {
     public String login(LoginRequest request) {
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+
         if (!authentication.isAuthenticated()) throw new BusinessException(AuthMessages.LOGIN_FAILED);
         String jwt = jwtService.generateToken(request.getEmail());
         return jwt;
