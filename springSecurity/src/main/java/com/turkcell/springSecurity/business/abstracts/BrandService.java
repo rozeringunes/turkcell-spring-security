@@ -8,7 +8,8 @@ import com.turkcell.springSecurity.entities.concretes.Brand;
 import java.util.List;
 
 public interface BrandService {
-CreatedBrandResponse add(CreateBrandRequest createBrandRequest);
-List<GetAllBrandResponse>getAll();
+    CreatedBrandResponse add(CreateBrandRequest createBrandRequest);
+
+    List<GetAllBrandResponse> getAll();
 }
 

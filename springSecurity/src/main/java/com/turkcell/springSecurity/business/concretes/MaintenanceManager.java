@@ -16,18 +16,18 @@ import java.time.LocalDateTime;
 public class MaintenanceManager implements MaintenanceService {
     private MaintenanceRepository maintenanceRepository;
     private ModelMapperService modelMapperService;
+
     @Override
     public CreatedMaintenanceResponse add(CreateMaintenanceRequest createMaintenanceRequest) {
-        Maintenance maintenance = this.modelMapperService.forRequest().map(createMaintenanceRequest,Maintenance.class);
+        Maintenance maintenance = this.modelMapperService.forRequest().map(createMaintenanceRequest, Maintenance.class);
 
         maintenance.setCreatedDate(LocalDateTime.now());
         maintenance.setDateSent(LocalDateTime.now());
 
-
         Maintenance createdMaintenance = maintenanceRepository.save(maintenance);
 
         CreatedMaintenanceResponse createdMaintenanceResponse = this.modelMapperService.forResponse()
-                .map(createdMaintenance,CreatedMaintenanceResponse.class);
+                .map(createdMaintenance, CreatedMaintenanceResponse.class);
 
         return createdMaintenanceResponse;
     }

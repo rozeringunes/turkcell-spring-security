@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 @Service
@@ -19,9 +20,11 @@ public class JwtService {
     @Value("${jwt.secret.key}")
     private String SECRET_KEY;
     @Value("${jwt.expiration.time}")
-    private long EXPIRATION ;
+    private long EXPIRATION;
+
     //BoilerPlate
-    public String generateToken(Map<String,Object> claims, String userName) {
+    public String generateToken(String userName) {
+        Map<String, Object> claims = new HashMap<>();
         return createToken(claims, userName);
     }
 
@@ -40,6 +43,7 @@ public class JwtService {
                 .getBody();
         return claims.getExpiration();
     }
+
     public String extractUser(String token) {
         Claims claims = Jwts
                 .parser()
@@ -49,6 +53,7 @@ public class JwtService {
                 .getBody();
         return claims.getSubject();
     }
+
     private String createToken(Map<String, Object> claims, String userName) {
         return Jwts.builder()
                 .setClaims(claims)
