@@ -1,8 +1,7 @@
 package com.turkcell.springSecurity.entities.concretes;
 
 import com.turkcell.springSecurity.core.entities.BaseEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,16 +18,16 @@ import java.util.List;
 @Entity
 @Table(name="users")
 public class User extends BaseEntity<Integer> implements UserDetails {
-
+    @Column(name="password")
     private String password;
+    @Column(name="email")
     private String email;
+    @Column(name="birthDate")
     private LocalDate birthDate;
 
-    //TODO:Implement
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
-    }
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name="user_role",joinColumns = @JoinColumn(name="user_id"),inverseJoinColumns =@JoinColumn(name="role_id"))
+    private List<Role>authorities;
 
     @Override
     public String getUsername() {
