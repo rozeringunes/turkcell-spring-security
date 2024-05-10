@@ -71,7 +71,7 @@ public class AuthManager implements AuthService {
         claims.put("id",user.getId());
         String jwt = jwtService.generateToken(claims,user.getEmail());
         return jwt;
-//Refresh Token kullanıldı
+        //Refresh Token kullanıldı
 
         //yeni jwt üret
         //yeni jwt üret
