@@ -30,6 +30,11 @@ public class UserManager implements UserService {
     }
 
     @Override
+    public User findByUsername(String username) {
+        return userRepository.findUserByEmail(username).orElseThrow();
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository
                 .findUserByEmail(username)

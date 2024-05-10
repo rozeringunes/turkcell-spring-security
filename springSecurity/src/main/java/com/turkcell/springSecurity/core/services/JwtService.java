@@ -23,8 +23,8 @@ public class JwtService {
     private long EXPIRATION;
 
     //BoilerPlate
-    public String generateToken(String userName) {
-        Map<String, Object> claims = new HashMap<>();
+    public String generateToken(Map<String, Object> claims,String userName) {
+
         return createToken(claims, userName);
     }
 

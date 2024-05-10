@@ -18,4 +18,8 @@ public class AuthController {
     private String login(@RequestBody LoginRequest request){
         return authService.login(request);
     }
+    @PostMapping("/refresh")
+    public String refreshToken(@RequestBody String refreshToken){
+        return authService.refreshToken(refreshToken);
+    }
 }
