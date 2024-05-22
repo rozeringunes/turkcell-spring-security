@@ -23,6 +23,7 @@ import java.util.Map;
 @Service
 @AllArgsConstructor
 public class AuthManager implements AuthService {
+
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
@@ -31,6 +32,7 @@ public class AuthManager implements AuthService {
 
     @Override
     public String login(LoginRequest request) {
+
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 
@@ -38,6 +40,7 @@ public class AuthManager implements AuthService {
 
         User user= userService.findByUsername(request.getEmail());
         String jwt=generateJwt(user);
+
         //TODO:Create Refresh Token For Specific USER
         refreshTokenService.create(user);
         return jwt;
